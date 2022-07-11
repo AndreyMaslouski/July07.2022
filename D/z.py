@@ -73,6 +73,10 @@ class Game:
         self.apple = Apple(self.surface)
         self.apple.draw()
 
+    def play(self):
+        self.snake.walk()
+        self.apple.draw()
+
     def run(self):
         running = True
 
@@ -92,8 +96,7 @@ class Game:
                 elif event.type == QUIT:
                     running == False
 
-            self.snake.walk()
-            self.apple.draw()
+            self.play()
 
             time.sleep(.3)
 
