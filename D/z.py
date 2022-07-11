@@ -56,7 +56,7 @@ class Game:
     def __init__(self):
         pygame.init()
         self.surface = pygame.display.set_mode((1000, 800))
-        self.snake = Snake(self.surface,2)
+        self.snake = Snake(self.surface,6)
         self.snake.draw()
 
     def run(self):
