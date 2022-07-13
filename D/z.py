@@ -105,6 +105,8 @@ class Game:
 
         # snake colliding with apple
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
+            sound = pygame.mixer.Sound("resourses/Ding.mp3")
+            pygame.mixer.Sound.play(sound)
             self.snake.increase_length()
             self.apple.move()
 
