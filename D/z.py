@@ -20,8 +20,8 @@ class Apple:
         pygame.display.flip()
 
     def move(self):
-        self.x = random.randint(0, 24) * SIZE
-        self.y = random.randint(0, 15) * SIZE
+        self.x = random.randint(1, 24) * SIZE
+        self.y = random.randint(1, 19) * SIZE
 
 
 class Snake:
@@ -77,7 +77,10 @@ class Snake:
 class Game:
     def __init__(self):
         pygame.init()
-        self.surface = pygame.display.set_mode((800, 500))
+        pygame.display.set_caption("Codebasics Snake And Apple Game")
+
+        pygame.mixer.init()
+        self.surface = pygame.display.set_mode((1000,800))
         self.snake = Snake(self.surface, 3)
         self.snake.draw()
         self.apple = Apple(self.surface)
@@ -121,7 +124,7 @@ class Game:
         pass
 
     def reset(self):
-        self.snake = Snake(self.surface, 1)
+        self.snake = Snake(self.surface, 3)
         self.apple = Apple(self.surface)
 
 
