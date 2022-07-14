@@ -80,6 +80,8 @@ class Game:
         pygame.display.set_caption("Codebasics Snake And Apple Game")
 
         pygame.mixer.init()
+        self.play_background_music()
+
         self.surface = pygame.display.set_mode((1000,800))
         self.snake = Snake(self.surface, 3)
         self.snake.draw()
@@ -97,6 +99,14 @@ class Game:
         score = font.render(f"Score: {self.snake.length}", True, (200, 200, 200))
         self.surface.blit(score, (800, 10))
 
+    def play_background_music(self):
+        pygame.mixer.music.load("resourses/bg_music_1.mp3")
+        pygame.mixer.music.play()
+
+    def play_sound(self,sound):
+        sound = pygame.mixer.Sound(f"resourses/{sound}.mp3")
+        pygame.mixer.Sound.play(sound)
+
     def play(self):
         self.snake.walk()
         self.apple.draw()
@@ -105,15 +115,15 @@ class Game:
 
         # snake colliding with apple
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
-            sound = pygame.mixer.Sound("resourses/Ding.mp3")
-            pygame.mixer.Sound.play(sound)
+            self.play.sound("ding")
             self.snake.increase_length()
             self.apple.move()
 
         # snake colliding with itself
         for i in range(3, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
-                raise "Game over"
+                self.play.sound("crash")
+                raise "Collision Occured"
 
     def show_game_over(self):
         self.surface.fill(BACKGROUND_COLOR)
