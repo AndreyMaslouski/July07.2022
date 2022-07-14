@@ -100,6 +100,9 @@ class Game:
         sound = pygame.mixer.Sound(f"resourses/{sound}.mp3")
         pygame.mixer.Sound.play(sound)
 
+    def render_background(self):
+        bg = pygame.image.load("resourses")
+
     def play(self):
         self.snake.walk()
         self.apple.draw()
@@ -108,14 +111,14 @@ class Game:
 
         # snake colliding with apple
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
-            self.play.sound("ding")
+            self.play_sound("ding")
             self.snake.increase_length()
             self.apple.move()
 
         # snake colliding with itself
         for i in range(3, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
-                self.play.sound("crash")
+                self.play_sound("crash")
                 raise "Collision Occured"
 
     def display_score(self):
@@ -151,7 +154,7 @@ class Game:
                         running = False
 
                     if event.key == K_RETURN:
-                        pygame.mixer.music.pause()
+                        pygame.mixer.music.unpause()
                         pause = False
                     if not pause:
                         if event.key == K_UP:
