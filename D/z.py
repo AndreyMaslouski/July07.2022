@@ -78,10 +78,8 @@ class Game:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption("Codebasics Snake And Apple Game")
-
         pygame.mixer.init()
         self.play_background_music()
-
         self.surface = pygame.display.set_mode((1000,800))
         self.snake = Snake(self.surface, 3)
         self.snake.draw()
@@ -93,11 +91,6 @@ class Game:
             if y1 >= y2 and y1 < y2 + SIZE:
                 return True
         return False
-
-    def display_score(self):
-        font = pygame.font.SysFont('arial', 30)
-        score = font.render(f"Score: {self.snake.length}", True, (200, 200, 200))
-        self.surface.blit(score, (800, 10))
 
     def play_background_music(self):
         pygame.mixer.music.load("resourses/bg_music_1.mp3")
@@ -125,6 +118,11 @@ class Game:
                 self.play.sound("crash")
                 raise "Collision Occured"
 
+    def display_score(self):
+        font = pygame.font.SysFont('arial', 30)
+        score = font.render(f"Score: {self.snake.length}", True, (200, 200, 200))
+        self.surface.blit(score, (850, 10))
+
     def show_game_over(self):
         self.surface.fill(BACKGROUND_COLOR)
         font = pygame.font.SysFont('arial', 30)
@@ -132,8 +130,10 @@ class Game:
         self.surface.blit(line1, (200, 300))
         line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
+
         pygame.display.flip()
-        pass
+
+        pygame.mixer.music.pause()
 
     def reset(self):
         self.snake = Snake(self.surface, 3)
@@ -151,6 +151,7 @@ class Game:
                         running = False
 
                     if event.key == K_RETURN:
+                        pygame.mixer.music.pause()
                         pause = False
                     if not pause:
                         if event.key == K_UP:
@@ -170,12 +171,13 @@ class Game:
             try:
                 if not pause:
                     self.play()
+
             except Exception as e:
                 self.show_game_over()
                 pause = True
                 self.reset()
 
-            time.sleep(.2)
+            time.sleep(.25)
 
 
 if __name__ == "__main__":
