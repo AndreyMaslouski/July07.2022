@@ -51,10 +51,9 @@ class Snake:
         self.direction = 'down'
 
     def draw(self):
-        self.parent_screen.fill(BACKGROUND_COLOR)
-        for i in range(self.length):
+       for i in range(self.length):
             self.parent_screen.blit(self.block, (self.x[i], self.y[i]))
-        pygame.display.flip()
+       pygame.display.flip()
 
     def walk(self):
 
@@ -101,9 +100,11 @@ class Game:
         pygame.mixer.Sound.play(sound)
 
     def render_background(self):
-        bg = pygame.image.load("resourses")
+        bg = pygame.image.load("resourses/background.jpg")
+        self.surface.blit(bg, (0,0))
 
     def play(self):
+        self.render_background()
         self.snake.walk()
         self.apple.draw()
         self.display_score()
@@ -127,6 +128,7 @@ class Game:
         self.surface.blit(score, (850, 10))
 
     def show_game_over(self):
+        self.render_background()
         self.surface.fill(BACKGROUND_COLOR)
         font = pygame.font.SysFont('arial', 30)
         line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (255, 255, 255))
