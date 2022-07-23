@@ -13,3 +13,11 @@ def create_keyboard():
     keyboard.add(drink_btn)
     keyboard.add(eat_btn)
     return keyboard
+
+def start_bot(message):
+    keyboard=create_keyboard()
+    bot.send_message(
+        message.chat.id,
+        "Добрый день! Выберите, что Вы хотите",
+        reply_markup=keyboard
+    )
