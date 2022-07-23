@@ -6,3 +6,5 @@ from telebot import types
 token= '5546376547:AAHgf4V3rsTgWPBk-6CKPvIOJLk_bQubzKg'
 bot = telebot.TeleBot(token)
 
+def create_keyboard():
+    keyboard = types.InlineKeyboardMarkup()
