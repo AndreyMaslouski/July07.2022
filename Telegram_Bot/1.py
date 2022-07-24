@@ -35,6 +35,21 @@ def callback_inline(call):
                 photo=img,
                 caption="Картинка воды",
                 reply_markup=keyboard)
+        if call.data=='2':
+            img = open('eat.jpg','rb')
+            bot.send_photo(
+                chat_id=call.message.chat.id,
+                photo=img,
+                caption="Картинка еды",
+                reply_markup=keyboard)
+        if call.data=='3':
+            img = open('vegetables.jpg','rb')
+            bot.send_photo(
+                chat_id=call.message.chat.id,
+                photo=img,
+                caption="Картинка овощей",
+                reply_markup=keyboard)
+
 
 if __name__=="__main__":
     bot.polling(none_stop=True)
