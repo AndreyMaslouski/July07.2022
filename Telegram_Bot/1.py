@@ -1,6 +1,7 @@
 import telebot
 from telebot import types
 
+
 # Tokken = 5546376547:AAHgf4V3rsTgWPBk-6CKPvIOJLk_bQubzKg
 
 token= '5546376547:AAHgf4V3rsTgWPBk-6CKPvIOJLk_bQubzKg'
@@ -14,6 +15,7 @@ def create_keyboard():
     keyboard.add(eat_btn)
     return keyboard
 
+@bot.message_handler(commands=['start'])
 def start_bot(message):
     keyboard=create_keyboard()
     bot.send_message(
@@ -21,3 +23,6 @@ def start_bot(message):
         "Добрый день! Выберите, что Вы хотите",
         reply_markup=keyboard
     )
+
+if __name__=='__main__':
+    bot.polling(none_stop=True)
