@@ -35,6 +35,7 @@ def callback_inline(call):
                 photo=img,
                 caption="Картинка воды",
                 reply_markup=keyboard)
+            img.close()
         if call.data=='2':
             img = open('eat.jpg','rb')
             bot.send_photo(
@@ -42,6 +43,7 @@ def callback_inline(call):
                 photo=img,
                 caption="Картинка еды",
                 reply_markup=keyboard)
+            img.close()
         if call.data=='3':
             img = open('vegetables.jpg','rb')
             bot.send_photo(
@@ -49,6 +51,7 @@ def callback_inline(call):
                 photo=img,
                 caption="Картинка овощей",
                 reply_markup=keyboard)
+            img.close()
 
 
 if __name__=="__main__":
