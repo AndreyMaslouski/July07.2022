@@ -24,5 +24,17 @@ def start_bot(message):
         reply_markup=keyboard
     )
 
-if __name__=='__main__':
+@bot.callback_query_handler(func=lambda call:True)
+def callback_inline(call):
+    keyboard = create_keyboard()
+    if call.message:
+        if call.data=='1':
+            img = open('water','rb')
+            bot.send_photo(
+                chat_id=call.message.chat.id,
+                photo=img,
+                caption="Картинка воды",
+                reply_markup=keyboard)
+
+if __name__=="__main__":
     bot.polling(none_stop=True)
