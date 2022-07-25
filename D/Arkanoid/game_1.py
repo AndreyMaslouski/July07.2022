@@ -75,7 +75,14 @@ while True:
         # special effect
         hit_rect.inflate_ip(ball.width * 3, ball.height * 3)
         pygame.draw.rect(sc,hit_color,hit_rect)
-        fps +=2
+        fps += 2
+    # win, game over
+    if ball.bottom > HEIGHT:
+        print('GAME OVER!')
+        exit()
+    elif not len(block_list):
+        print('WIN!!!')
+        exit()
 
     # control
     key = pygame.key.get_pressed()
