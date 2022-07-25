@@ -15,6 +15,9 @@ ball_speed = 6
 ball_rect = int(str(ball_radius) * 2 ** 0,5)
 ball = pygame.Rect(rnd(ball_rect, WIDTH - ball_rect), HEIGHT // 2,ball_rect,ball_rect)
 dx, dy = 1,-1
+# blocks settings
+block_list = [pygame.Rect(10 + 120 * i, 10 + 70*j,100,50) for i in range(10) for j in range(4)]
+color_list = [(rnd(30,256),rnd(30,256),rnd(30,256)) for i in range(10) for j in range(4)]
 
 pygame.init()
 sc = pygame.display.set_mode((WIDTH,HEIGHT))
@@ -29,6 +32,7 @@ while True:
             exit()
     sc.blit(img,(0,0))
     #drawing world
+    [pygame.draw.rect(sc,color_list[color],block) for color, block in enumerate(block_list)]
     pygame.draw.rect(sc,pygame.Color('darkorange'), paddle)
     pygame.draw.circle(sc, pygame.Color('white'), ball.center, ball_radius)
     # ball movement
