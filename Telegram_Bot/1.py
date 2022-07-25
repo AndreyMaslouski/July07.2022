@@ -52,7 +52,30 @@ def callback_inline(call):
                 caption="Картинка овощей",
                 reply_markup=keyboard)
             img.close()
-
+        if call.data=='4':
+            img = open('Hochy Gulyat.jpg','rb')
+            bot.send_photo(
+                chat_id=call.message.chat.id,
+                photo=img,
+                caption="Хочу гулять",
+                reply_markup=keyboard)
+            img.close()
+        if call.data=='5':
+            img = open('hochy spat.jpeg','rb')
+            bot.send_photo(
+                chat_id=call.message.chat.id,
+                photo=img,
+                caption="Хочу спать",
+                reply_markup=keyboard)
+            img.close()
+        if call.data == '6':
+            img = open('Hochu shutky.jpg', 'rb')
+            bot.send_photo(
+                chat_id=call.message.chat.id,
+                photo=img,
+                caption="Хочу шутку",
+                reply_markup=keyboard)
+            img.close()
 
 if __name__=="__main__":
     bot.polling(none_stop=True)
