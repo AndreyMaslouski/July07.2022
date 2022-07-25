@@ -72,6 +72,10 @@ while True:
         hit_rect = block_list.pop(hit_index)
         hit_color = color_list.pop(hit_index)
         dx,dy = detect_collision(dx,dy,ball,hit_rect)
+        # special effect
+        hit_rect.inflate_ip(ball.width * 3, ball.height * 3)
+        pygame.draw.rect(sc,hit_color,hit_rect)
+        fps +=2
 
     # control
     key = pygame.key.get_pressed()
