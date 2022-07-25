@@ -34,6 +34,15 @@ while True:
     # ball movement
     ball.x += ball_speed * dx
     ball.y += ball_speed * dy
+    # collision left right
+    if ball.centerx < ball_radius or ball.centerx > WIDTH - ball_radius:
+        dx = -dx
+    # collision top
+    if ball.centery < ball_radius:
+        dy = -dy
+    # collision paddle
+    if ball.colliderect(paddle) and dy > 0:
+        dy = -dy
     # control
     key = pygame.key.get_pressed()
     if key[pygame.K_LEFT] and paddle.left > 0:
